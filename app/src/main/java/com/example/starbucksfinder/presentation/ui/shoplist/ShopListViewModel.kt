@@ -54,30 +54,33 @@ class ShopListViewModel @Inject constructor(
         }
     )
 
-    private suspend fun getStarbucksShops(nextKey: String?) : Result<List<StarbucksShop>> {
-            state = state.copy(
-                isLoading = true,
-                error = null
-            )
-            when (val result = repository.getStarbucksShops(
-                nextKey
-            )) {
-                is Resource.Success -> {
-                    nextPageKey = result.data?.nextPageToken
-                    state = state.copy(
-                        isLoading = false,
-                        error = null
-                    )
-                    result.data?.shops?.let { return Result.success(it) } ?: return Result.failure(Exception(result.message))
-                }
-                is Resource.Error -> {state =  state.copy(
+    private suspend fun getStarbucksShops(nextKey: String?): Result<List<StarbucksShop>> {
+        state = state.copy(
+            isLoading = true,
+            error = null
+        )
+        when (val result = repository.getStarbucksShops(
+            nextKey
+        )) {
+            is Resource.Success -> {
+                nextPageKey = result.data?.nextPageToken
+                state = state.copy(
+                    isLoading = false,
+                    error = null
+                )
+                result.data?.shops?.let { return Result.success(it) } ?: return Result.failure(
+                    Exception(result.message)
+                )
+            }
+            is Resource.Error -> {
+                state = state.copy(
                     shops = null,
                     isLoading = false,
                     error = result.message
                 )
-                    return Result.failure(Exception(result.message))
-                }
+                return Result.failure(Exception(result.message))
             }
+        }
     }
 
     fun loadNextShops() {

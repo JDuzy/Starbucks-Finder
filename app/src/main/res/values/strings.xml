@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Starbucks Finder</string>
+    <string name="nullShopListErrorMessage">An error has occurred fetching new shops</string>
+</resources>

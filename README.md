@@ -14,4 +14,5 @@ Tecnologias/Patrones usados:
 - Layering de Clean Architecure( Presentation/ Domain/ Data )
 - MVVM
 
-<img src="[/images/output/video1.gif](https://github.com/JDuzy/Starbucks-Finder/blob/master/starbucksFinder.gif)" width="300" height="400"/>
+
+<img src="https://github.com/JDuzy/Starbucks-Finder/blob/master/starbucksFinder.gif" width="300"/>
